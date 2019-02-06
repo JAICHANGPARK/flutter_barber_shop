@@ -160,32 +160,59 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           SizedBox(
-            height: 25.0,
+            height: 30.0,
           ),
-          Padding(
-            padding: EdgeInsets.only(left: 15.0, right: 15.0),
-            child: InkWell(
-              onTap: () {},
-              child: Container(
-                height: 50.0,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7.0),
-                    color: Colors.black),
-                child: Center(
-                  child: Text(
-                    "BOOK",
-                    style: TextStyle(
-                        letterSpacing: 2.0,
-                        fontFamily: 'FirSans',
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 17.0),
+          Stack(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(left: 15.0, right: 15.0),
+                child: InkWell(
+                  onTap: () {},
+                  child: Container(
+                    height: 60.0,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(7.0),
+                        color: Colors.black),
+                    child: Center(
+                      child: Text(
+                        "BOOK",
+                        style: TextStyle(
+                            letterSpacing: 2.0,
+                            fontFamily: 'FirSans',
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 17.0),
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
-          )
+              Positioned(
+                top: 5.0,
+                right: 20.0,
+                bottom: 5.0,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(7.0),
+                    color: Colors.grey.withOpacity(0.3),
+                  ),
+                  height: 45.0,
+                  width: 45.0,
+                  child: Center(
+                    child: Text(
+                      '\$65',
+                      style: TextStyle(
+
+                          fontFamily: 'Nunito',
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ],
       ),
     );
