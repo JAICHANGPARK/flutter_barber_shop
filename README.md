@@ -1,6 +1,6 @@
 # flutter_barber_shop
 
-A new Flutter application.
+<img src="https://github.com/JAICHANGPARK/flutter_barber_shop/blob/master/device-2019-02-06-154107.png"/>
 
 ## Getting Started
 
