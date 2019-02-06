@@ -31,15 +31,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   var selectedDate = 19;
   var selectedBarber = "Jonathan";
   var selectedTime = '12:38';
 
-  
-
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Colors.white,
+        title: Text(
+          'BOOKING',
+          style: TextStyle(
+              fontFamily: 'FiraSans', fontSize: 16.0, color: Colors.black),
+        ),
+        centerTitle: true,
+        leading: IconButton(icon: Icon(Icons.arrow_back, color: Colors.black,), onPressed: () {}),
+      ),
+    );
   }
 }

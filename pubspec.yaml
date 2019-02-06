@@ -36,6 +36,19 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  assets:
+    - assets/style3.jpeg
+    - assets/style2.jpg
+    - assets/style1.jpg
+
+  fonts:
+    - family: FiraSans
+      fonts:
+        - asset: assets/fonts/FiraSans-Regular.ttf
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Regular.ttf
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg
