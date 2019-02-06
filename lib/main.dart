@@ -140,8 +140,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-
-          SizedBox(height: 20.0,),
+          SizedBox(
+            height: 20.0,
+          ),
           Container(
             height: 50.0,
             child: ListView(
@@ -156,6 +157,33 @@ class _MyHomePageState extends State<MyHomePage> {
                 getTime('15.00'),
                 SizedBox(width: 25.0)
               ],
+            ),
+          ),
+          SizedBox(
+            height: 25.0,
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 15.0, right: 15.0),
+            child: InkWell(
+              onTap: () {},
+              child: Container(
+                height: 50.0,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(7.0),
+                    color: Colors.black),
+                child: Center(
+                  child: Text(
+                    "BOOK",
+                    style: TextStyle(
+                        letterSpacing: 2.0,
+                        fontFamily: 'FirSans',
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontSize: 17.0),
+                  ),
+                ),
+              ),
             ),
           )
         ],
@@ -255,14 +283,13 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-
-  selectBarber(name){
+  selectBarber(name) {
     setState(() {
       selectedBarber = name;
     });
   }
 
-  Color getSelectedBarber(name){
+  Color getSelectedBarber(name) {
     print(selectedBarber);
     print(selectedDate);
     print(selectedTime);
@@ -294,22 +321,72 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 150.0,
                 width: 150.0,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7.0),
-                    color: getSelectedBarber(name),),
+                  borderRadius: BorderRadius.circular(7.0),
+                  color: getSelectedBarber(name),
+                ),
               ),
             )
           ],
         ),
-
         SizedBox(height: 7.0),
         Text(
           name,
           style: TextStyle(fontFamily: 'FirSans', fontSize: 15.0),
         )
-
       ],
     );
   }
 
+  Color switchTimeColor(time) {
+    if (time == selectedTime) {
+      //만약 선택한 시간이 초기화되어 있던 시간과 같다면
+      return Colors.black.withOpacity(0.8);
+    } else {
+      return Colors.grey.withOpacity(0.2);
+    }
+  }
 
+  Color switchTimeContentColor(time) {
+    if (time == selectedTime) {
+      return Colors.white;
+    } else {
+      return Colors.black;
+    }
+  }
+
+  selectTime(time) {
+    //가장 중요한 함수
+    // 위젯의 시간 문자 변수를 전역 변수에 넣음
+    setState(() {
+      selectedTime = time;
+    });
+  }
+
+  Widget getTime(time) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeIn,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        color: switchTimeColor(time),
+      ),
+      height: 50.0,
+      width: 70.0,
+      child: InkWell(
+        onTap: () {
+          selectTime(time);
+        },
+        child: Center(
+          child: Text(
+            time,
+            style: TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 17.0,
+                fontWeight: FontWeight.bold,
+                color: switchTimeContentColor(time)),
+          ),
+        ),
+      ),
+    );
+  }
 }
