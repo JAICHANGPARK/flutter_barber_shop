@@ -95,6 +95,68 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               )
             ],
+          ),
+          SizedBox(
+            height: 35.0,
+          ),
+          Center(
+            child: Text(
+              "Hagorapt",
+              style: TextStyle(
+                  letterSpacing: 2.0,
+                  fontSize: 30.0,
+                  color: Colors.black.withOpacity(0.6),
+                  fontFamily: 'Nunito',
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(
+            height: 15.0,
+          ),
+          Row(
+            children: <Widget>[
+              SizedBox(
+                width: 15.0,
+              ),
+              getService('Beards', 50),
+              getService('Crew Cut', 15),
+            ],
+          ),
+          SizedBox(
+            height: 15.0,
+          ),
+          Container(
+            height: 175.0,
+            child: ListView(
+              padding: EdgeInsets.only(left: 15.0, right: 15.0),
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                getBarber('assets/style2.jpg', 'Anton'),
+                SizedBox(width: 15.0),
+                getBarber('assets/style1.jpg', 'Jonathan'),
+                SizedBox(width: 15.0),
+                getBarber('assets/style3.jpeg', 'Jim'),
+                SizedBox(width: 15.0),
+              ],
+            ),
+          ),
+
+          SizedBox(height: 20.0,),
+          Container(
+            height: 50.0,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                getTime('11.00'),
+                SizedBox(width: 25.0),
+                getTime('12.30'),
+                SizedBox(width: 25.0),
+                getTime('13.30'),
+                SizedBox(width: 25.0),
+                getTime('15.00'),
+                SizedBox(width: 25.0)
+              ],
+            ),
           )
         ],
       ),
@@ -116,14 +178,18 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Center(
           child: Column(
             children: <Widget>[
-              SizedBox(height: 7.0,),
-              Text(date.toString(), style: TextStyle(
-                fontSize: 17.0,
-                fontFamily: 'Nunito',
-                fontWeight: FontWeight.bold,
-                color: switchContentColor(date),
-              ),),
-
+              SizedBox(
+                height: 7.0,
+              ),
+              Text(
+                date.toString(),
+                style: TextStyle(
+                  fontSize: 17.0,
+                  fontFamily: 'Nunito',
+                  fontWeight: FontWeight.bold,
+                  color: switchContentColor(date),
+                ),
+              ),
               Text(
                 day,
                 style: TextStyle(
@@ -132,7 +198,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: switchContentColor(date),
                 ),
               )
-
             ],
           ),
         ),
@@ -143,15 +208,15 @@ class _MyHomePageState extends State<MyHomePage> {
   Color switchColor(date) {
     if (date == selectedDate) {
       return Colors.black.withOpacity(0.8);
-    }else{
+    } else {
       return Colors.grey.withOpacity(0.2);
     }
   }
 
-  Color switchContentColor(date){
-    if(date == selectedDate){
+  Color switchContentColor(date) {
+    if (date == selectedDate) {
       return Colors.white;
-    }else{
+    } else {
       return Colors.black;
     }
   }
@@ -161,4 +226,90 @@ class _MyHomePageState extends State<MyHomePage> {
       selectedDate = date;
     });
   }
+
+  Widget getService(String name, int price) {
+    return Container(
+      child: Row(
+        children: <Widget>[
+          Text(
+            name,
+            style: TextStyle(
+                fontFamily: 'Nunito', fontSize: 17.0, color: Colors.black),
+          ),
+          SizedBox(
+            width: 5.0,
+          ),
+          Text(
+            '\$' + price.toString(),
+            style: TextStyle(
+                fontFamily: 'Nunito', fontSize: 17.0, color: Colors.grey),
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.close,
+            ),
+            onPressed: () {},
+          )
+        ],
+      ),
+    );
+  }
+
+
+  selectBarber(name){
+    setState(() {
+      selectedBarber = name;
+    });
+  }
+
+  Color getSelectedBarber(name){
+    print(selectedBarber);
+    print(selectedDate);
+    print(selectedTime);
+    if (name == selectedBarber) {
+      return Colors.green.withOpacity(0.3);
+    } else {
+      return Colors.transparent;
+    }
+  }
+
+  Widget getBarber(String imagePath, String name) {
+    return Column(
+      children: <Widget>[
+        Stack(
+          children: <Widget>[
+            Container(
+              height: 150.0,
+              width: 150.0,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7.0),
+                  image: DecorationImage(
+                      image: AssetImage(imagePath), fit: BoxFit.cover)),
+            ),
+            InkWell(
+              onTap: () {
+                selectBarber(name);
+              },
+              child: Container(
+                height: 150.0,
+                width: 150.0,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(7.0),
+                    color: getSelectedBarber(name),),
+              ),
+            )
+          ],
+        ),
+
+        SizedBox(height: 7.0),
+        Text(
+          name,
+          style: TextStyle(fontFamily: 'FirSans', fontSize: 15.0),
+        )
+
+      ],
+    );
+  }
+
+
 }
