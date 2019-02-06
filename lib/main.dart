@@ -47,7 +47,33 @@ class _MyHomePageState extends State<MyHomePage> {
               fontFamily: 'FiraSans', fontSize: 16.0, color: Colors.black),
         ),
         centerTitle: true,
-        leading: IconButton(icon: Icon(Icons.arrow_back, color: Colors.black,), onPressed: () {}),
+        leading: IconButton(
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            onPressed: () {}),
+      ),
+      body: ListView(
+        children: <Widget>[
+          Stack(
+            children: <Widget>[
+              Container(
+                height: 100.0,
+                decoration: BoxDecoration(boxShadow: [
+                  BoxShadow(
+                      blurRadius: 3.0, color: Colors.black.withOpacity(0.2),
+                  spreadRadius: 4.0),
+                ]
+                ,
+                  color: Colors.white
+
+                ),
+
+              )
+            ],
+          )
+        ],
       ),
     );
   }
