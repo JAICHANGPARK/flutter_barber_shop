@@ -62,19 +62,97 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 100.0,
                 decoration: BoxDecoration(boxShadow: [
                   BoxShadow(
-                      blurRadius: 3.0, color: Colors.black.withOpacity(0.2),
-                  spreadRadius: 4.0),
-                ]
-                ,
-                  color: Colors.white
-
+                      blurRadius: 3.0,
+                      color: Colors.black.withOpacity(0.2),
+                      spreadRadius: 4.0),
+                ], color: Colors.white),
+              ),
+              Positioned(
+                top: 20.0,
+                left: 15.0,
+                right: 15.0,
+                child: Container(
+                  height: 60.0,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: <Widget>[
+                      getDate(18, 'Tue'),
+                      SizedBox(width: 25.0),
+                      getDate(19, 'Wed'),
+                      SizedBox(width: 25.0),
+                      getDate(20, 'Thu'),
+                      SizedBox(width: 25.0),
+                      getDate(21, 'Fri'),
+                      SizedBox(width: 25.0),
+                    ],
+                  ),
                 ),
-
               )
             ],
           )
         ],
       ),
     );
+  }
+
+  Widget getDate(int date, String day) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeIn,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30.0), color: switchColor(date)),
+      width: 60.0,
+      height: 60.0,
+      child: InkWell(
+        onTap: () {
+          selectDate(date);
+        },
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: 7.0,),
+              Text(date.toString(), style: TextStyle(
+                fontSize: 17.0,
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.bold,
+                color: switchContentColor(date),
+              ),),
+
+              Text(
+                day,
+                style: TextStyle(
+                  fontFamily: 'FiraSans',
+                  fontSize: 15.0,
+                  color: switchContentColor(date),
+                ),
+              )
+
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Color switchColor(date) {
+    if (date == selectedDate) {
+      return Colors.black.withOpacity(0.8);
+    }else{
+      return Colors.grey.withOpacity(0.2);
+    }
+  }
+
+  Color switchContentColor(date){
+    if(date == selectedDate){
+      return Colors.white;
+    }else{
+      return Colors.black;
+    }
+  }
+
+  selectDate(date) {
+    setState(() {
+      selectedDate = date;
+    });
   }
 }
